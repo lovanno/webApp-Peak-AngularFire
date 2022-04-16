@@ -1,0 +1,113 @@
+p.logo{
+    display: block;
+
+    position: fixed;
+    cursor: pointer;
+
+    height: 5%;
+    top: -1.25%;
+    left: 44%;
+
+
+    font-family: 'Times New Roman', Times, serif;
+    color: transparent; /*slighly lighter to blend with Li's */
+  
+    font-size: 1.5rem;
+    letter-spacing: 0.438rem;
+    font-weight: 600;
+  
+    margin: 1.563rem;
+    padding: 0.625rem 1.0rem;
+
+  
+    transition: 400ms;
+  }
+
+  /*  Text  */
+  .nav-items {
+    cursor: pointer;
+    background: black;
+    position: fixed;
+
+    overflow: hidden;
+    list-style-type: none;
+ 
+    width: 100%;
+    z-index: 500;
+
+    transition: 400ms;
+  }
+
+  .nav-item.sec1{
+    position: relative;
+    float: left;
+
+    left: 3%;
+  }
+
+  .nav-item.sec2{
+    position: relative;
+    float: right;
+
+    right: 2.5%;
+  }
+
+  .nav-link{
+    display: block;
+
+    font-size: 1.0rem;
+    font-weight: 600;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+
+    margin: 1.563rem;
+    padding: 0.625rem 1.0rem;
+    letter-spacing: 0.156rem;
+  
+  
+    transition: 400ms;
+  }
+
+
+  /* Text Highlight */
+  .nav-link:hover:not(.active) {   /* Hover of Li Nav Bar*/
+    color: #c2592f;
+    text-decoration: none;
+    transition: 400ms;
+
+  }
+
+/*!                 Scroll Effects                  !*/
+
+/*      Nav Bar - Homescreen   */
+
+  /*Background*/
+.scrolling-active{ 
+    background: black;
+    /*box-shadow: 0 3px 1rem rgba(0,0,0,.1);*/
+    z-index: 1002;
+
+    transition: 800ms;
+  }
+
+
+  /* Text */
+  .scrolling-active .nav-link{
+    color: white;
+    z-index: 1001;
+
+  }
+
+  .scrolling-active p.logo{
+    color: white;
+
+  }
+
+
+  .scrolling-active .nav-link:hover{
+    color: #878686;
+    z-index: 1001;
+    transition: 600ms;
+
+  }
