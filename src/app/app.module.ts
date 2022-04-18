@@ -16,7 +16,6 @@ import { AngularFireModule } from '@angular/fire/compat';
     AppRoutingModule,
     AngularFirestoreModule,
     AngularFireModule.initializeApp(environment.firestore)
-
   ],
   providers: [],
   bootstrap: [AppComponent]

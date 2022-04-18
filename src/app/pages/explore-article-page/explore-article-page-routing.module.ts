@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ExplorePageComponent } from './explore-page.component';
+import { ExploreArticlePageComponent } from './explore-article-page.component';
 
 const routes: Routes = [
-  { path: '', component: ExplorePageComponent }
+  {
+    path: '', component: ExploreArticlePageComponent
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class ExplorePageRoutingModule { }
+export class ExploreArticlePageRoutingModule { }

@@ -1,0 +1,44 @@
+
+
+
+.entireArticleCont {
+    margin-left: 10rem;
+    margin-right: 10rem;
+}
+
+.articleTitleCont {
+    margin-left: 10rem;
+    margin-right: 10rem;
+}
+
+.articleTitle {
+    display: flex;
+    justify-content: space-around;
+}
+
+.articleDescCont {
+    display: flex;
+    flex-direction: column;
+}
+
+img.articleImg {
+    height: 17rem;
+    width: 37rem;
+}
+
+p.articleSectHeader {
+    font-size: 1.5rem;
+    font-weight: bolder;
+}
+
+p.articleSectDesc {
+    line-height: 2rem;
+    letter-spacing: 0.06rem;
+}
+
+ul.articleSummary {
+    margin-left: 8rem;
+    margin-right: 10rem;
+}
+
+

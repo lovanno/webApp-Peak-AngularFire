@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProfilePageComponent } from './profile-page.component';
 
 const routes: Routes = [
-  { path: 'profile', component: ProfilePageComponent }
+  { path: '', component: ProfilePageComponent }
 
 ];
 

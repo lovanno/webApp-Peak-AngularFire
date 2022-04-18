@@ -1,0 +1,25 @@
+<div class ="entireArticleCont" *ngFor="let item of specificArticle | async">
+    <div class = "articleTitleCont">
+        <div class = "articleTitle">
+            <p>{{item.name}}</p>
+            <p>{{item.location}}</p>
+        </div>
+        <div class = "articleType">
+            <p>{{item.type}}</p>
+            <p>{{item.subtype}}</p>
+        </div>
+    </div>
+
+
+    <!--The major issue of mixing attributes is that an article can have a different amount of paragraphs and images. We'll have to find a better solution -->
+    <div class ="articleDescCont" *ngFor="let it of item.allImg; let i=index">
+
+        <img class="articleImg" [src]="it">
+        <p class ="articleSectHeader">{{item.headers[i]}}</p>
+        <p class ="articleSectDesc">{{item.desc[i]}}</p>
+    </div>
+
+    <ul class = "articleSummary">
+        <li *ngFor="let it of item.bullets">{{it}}</li>
+    </ul>
+</div> 

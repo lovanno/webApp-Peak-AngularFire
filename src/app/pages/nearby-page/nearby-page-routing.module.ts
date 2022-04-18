@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NearbyPageComponent } from './nearby-page.component';
 
 const routes: Routes = [
-  { path: 'nearby', component: NearbyPageComponent }
+  { path: '', component: NearbyPageComponent }
 
 ];
 
