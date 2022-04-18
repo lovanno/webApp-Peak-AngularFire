@@ -4,6 +4,7 @@ import { ExploreHomeComponent } from './components/explore-home/explore-home.com
 import { RouterModule } from '@angular/router';
 import { ExploreArticleComponent } from './components/explore-article/explore-article.component';
 import { ExplorePlansComponent } from './components/explore-plans/explore-plans.component';
+import { ExploreEventsComponent } from './components/explore-events/explore-events.component';
 
 
 
@@ -11,7 +12,8 @@ import { ExplorePlansComponent } from './components/explore-plans/explore-plans.
   declarations: [
     ExploreHomeComponent,
     ExploreArticleComponent,
-    ExplorePlansComponent
+    ExplorePlansComponent,
+    ExploreEventsComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { ExplorePlansComponent } from './components/explore-plans/explore-plans.
   exports: [
     ExploreHomeComponent,
     ExploreArticleComponent,
-    ExplorePlansComponent
+    ExplorePlansComponent,
+    ExploreEventsComponent
   ]
 })
 export class ExploreModule { }
