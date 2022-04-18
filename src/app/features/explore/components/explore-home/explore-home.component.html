@@ -1,18 +1,9 @@
 
-<div class ="allCont">
-    <div class="planArticleCont" *ngFor="let item of allArticles | async" >
-        <img class="planArticleImg" [src]="item.displayImg">
-        <div class = "planArticleDesc">
-            <p class="planArticleType">{{item.type}}</p>
-            <p class="planArticleSubtype" >{{item.subtype}}</p>
-            <p class="planArticleTitle">{{item.name}}</p>
-            
-            <!--I have to find a way to replace %20 into - dashes. It works for the time being-->
-            <a [routerLink]="['/explore', item.name]">Check Article</a>
-        </div>
-    </div>
-</div>
 
 
+<h2>This is the explore home page</h2>
 
 
+<p> The next task will be navigating between plans and events through this page</p>
+<p>I broke this down to allow users to choose specific cities</p>
+<p>A flaw is that it should be automatic. We could experiment with that later</p>

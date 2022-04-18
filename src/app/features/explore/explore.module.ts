@@ -3,13 +3,15 @@ import { CommonModule } from '@angular/common';
 import { ExploreHomeComponent } from './components/explore-home/explore-home.component';
 import { RouterModule } from '@angular/router';
 import { ExploreArticleComponent } from './components/explore-article/explore-article.component';
+import { ExplorePlansComponent } from './components/explore-plans/explore-plans.component';
 
 
 
 @NgModule({
   declarations: [
     ExploreHomeComponent,
-    ExploreArticleComponent
+    ExploreArticleComponent,
+    ExplorePlansComponent
   ],
   imports: [
     CommonModule,
@@ -17,7 +19,8 @@ import { ExploreArticleComponent } from './components/explore-article/explore-ar
   ],
   exports: [
     ExploreHomeComponent,
-    ExploreArticleComponent
+    ExploreArticleComponent,
+    ExplorePlansComponent
   ]
 })
 export class ExploreModule { }

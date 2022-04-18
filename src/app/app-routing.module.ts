@@ -8,8 +8,12 @@ const routes: Routes = [
     loadChildren: () => import('./pages/landing-page/landing-page.module').then((m) => m.LandingPageModule)
   },
   {
-    path: 'explore/:name',
+    path: 'explore/plans/:name',
     loadChildren: () => import('./pages/explore-article-page/explore-article-page.module').then((m) => m.ExploreArticlePageModule)
+  },
+  {
+    path: 'explore/plans',
+    loadChildren: () => import('./pages/explore-plans-page/explore-plans-page.module').then((m) => m.ExplorePlansPageModule)
   },
   {
     path: 'explore',
