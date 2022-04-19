@@ -1,0 +1,18 @@
+
+<div *ngFor="let events of allEvents | async">
+    <div class="eventCont">
+        <p class="eventDate">{{events.date.toDate() | date:'MMM d'}}</p>
+
+        <div class ="eventDescCont">
+            <div class ="eventDescHeaderCont">
+                <p class ="eventType">{{events.type}}</p>
+                <p class ="eventSubType">{{events.subtype}}</p>
+            </div>
+            <p class = "eventTitle">{{events.name}}</p>
+            <p class = "eventLocat">{{events.location}}</p>
+        </div>
+
+        <img class ="eventImg" [src] ='events.displayImg'>
+        <a [routerLink]="['/explore/events', events.name]">{{events.name}}</a>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+
+
+<div *ngFor="let item of specificEvent | async">
+    <p class="eventPerformer">Performer: {{item.performer}}</p>
+    
+    <p class="eventAddress">{{item.location}}</p>
+    <p class="eventAddress">{{item.address}}</p>
+    <p class="eventAddress">For more information, please visit {{item.website}}</p>
+    <p class="eventAge">Is the Event 18+ only? {{item.age1}}</p>
+    <p class="eventAge"> Is the Event 18+ only? {{item.age2}}</p>
+
+    <div *ngFor="let img of item.allImg; let i = index">
+        <img class="eventImg"[src]="img">
+        <p class="eventDetails">{{item.desc[i]}}</p>
+    </div>
+    
+</div>

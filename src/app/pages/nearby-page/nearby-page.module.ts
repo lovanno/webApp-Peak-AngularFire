@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { NearbyPageRoutingModule } from './nearby-page-routing.module';
 import { NearbyPageComponent } from './nearby-page.component';
 import { HeaderModule } from 'src/app/features/header/header.module';
+import { NearbyModule } from 'src/app/features/nearby/nearby.module';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { HeaderModule } from 'src/app/features/header/header.module';
   imports: [
     CommonModule,
     NearbyPageRoutingModule,
-    HeaderModule
+    HeaderModule,
+    NearbyModule
   ]
 })
 export class NearbyPageModule { }

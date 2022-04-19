@@ -1,0 +1,36 @@
+
+
+.eventCont {
+    display: flex;
+    align-items: center;
+    margin-left: 10rem;
+    margin-right: 10rem;
+
+}
+
+
+p.eventType {
+    color: #DC0B20;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+
+p.eventDate {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-right: 2rem;
+}
+
+
+.eventDescHeaderCont {
+    display: flex;
+    justify-content: space-between;
+}
+
+img.eventImg {
+    height: 6rem;
+    width: 8rem;
+}

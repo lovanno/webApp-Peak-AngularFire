@@ -1,0 +1,15 @@
+
+<div class ="allCont">
+    <div class="planArticleCont" *ngFor="let item of allArticles | async" >
+        <img class="planArticleImg" [src]="item.displayImg">
+        <div class = "planArticleDesc">
+            <p class="planArticleType">{{item.type}}</p>
+            <p class="planArticleSubtype" >{{item.subtype}}</p>
+            <p class="planArticleTitle">{{item.name}}</p>
+            
+            <!--I have to find a way to replace %20 into - dashes. It works for the time being-->
+            <a [routerLink]="['/explore/plans/', item.name]">Check Article</a>
+        </div>
+    </div>
+</div>
+
