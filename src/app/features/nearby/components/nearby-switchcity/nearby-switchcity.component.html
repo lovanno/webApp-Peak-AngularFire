@@ -1,25 +1,13 @@
-     <label for="city-select">Choose a city:</label>
+    <label for="city-select">Choose a city:</label>
 
-    <select name="cities" #citySelect (change)="userList(citySelect.value)">
+    <select name="cities" #citySelect (change)="sendUp(citySelect.value)">
         <option value="">--Please choose an option--</option>
         <option value="Chicago">Chicago</option>
         <option value="San Francisco">San Francisco</option>
     </select>
 
-    <!--
-    <img class = "cityImg" [src]="imageSan">
-    <p>{{coordinatesSan}}</p>
-    <p>{{currentCity}}</p>
+    <h2>{{citySelect.value}}</h2>
+    <h3>{{sendImg}}</h3>
 
-
-    <p>{{testObs}}</p>
-
-
-    <h2>HEYYYy</h2>
-
-
--->
-
-
-
-<h2>Switch City Comp</h2>
+    <!-- A current bug is the image doesn't update on the first choice. This is because sendImg isn't a function but just a variable. It won't update until the second time-->
+    <img *ngIf="sendImg" class = "cityImg" [src]="sendImg">

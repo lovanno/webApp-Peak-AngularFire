@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { MapMouseEvent } from 'maplibre-gl';
 import { Observable } from 'rxjs';
@@ -10,28 +10,26 @@ import { ChoosenCity } from '../../interfaces/choosen-city';
   styleUrls: ['./nearby-switchcity.component.scss']
 })
 export class NearbySwitchcityComponent implements OnInit {
-  @Input() userList: any;
-
+  @Output() sendCity = new EventEmitter
+  @Input() sendImg: string | undefined;
   public cityArr = ["Chicago", "San Francisco"];
-
   public center = [-74.50, 40];
-  public testObs: any | undefined;
 
 
   constructor() {
-
   }
 
 
 
-
-
-  center2 = [-74.50, 40] as maplibregl.LngLatLike
+  sendUp(city: string) {
+    this.sendCity.emit(city)
+  }
 
 
 
 
   ngOnInit(): void {
   }
+
 
 }
