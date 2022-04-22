@@ -4,11 +4,10 @@ import { NearbyMapComponent } from './components/nearby-map/nearby-map.component
 import { NgxMapLibreGLModule } from '@maplibre/ngx-maplibre-gl';
 import { NearbyViewMapComponent } from './components/nearby-view-map/nearby-view-map.component';
 
-
 @NgModule({
   declarations: [
     NearbyMapComponent,
-    NearbyViewMapComponent
+    NearbyViewMapComponent,
   ],
   imports: [
     CommonModule,

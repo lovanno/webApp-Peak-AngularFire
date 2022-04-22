@@ -1,6 +1,6 @@
 <label for="city-select">Choose a city:</label>
 
-    <select name="cities" #citySelect (change)="works(citySelect.value)">
+    <select name="cities" #citySelect (change)="updateCity(citySelect.value)">
         <option value="">--Please choose an option--</option>
         <option value="Chicago">Chicago</option>
         <option value="New York City">New York City</option>
@@ -10,4 +10,5 @@
     <h2>{{citySelect.value}}</h2>
     <img *ngIf="citiesServ.cityImg" class = "cityImg" [src]="citiesServ.cityImg">
 
-<app-nearby-map [mapCord]="citiesServ.cityCord"></app-nearby-map>
+<!-- I tried to seperate event pins from the map. Nesting a child component inside <app-nearby-map> didn't work with the map since ng-content is for static content projection-->
+<app-nearby-map [mapCord]="citiesServ.cityCord" [mapPlaces]="(citiesServ.places$ | async)"></app-nearby-map>   

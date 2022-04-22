@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import { AngularFirestore, AngularFirestoreCollection, DocumentData } from '@angular/fire/compat/firestore';
 import { Observable, Subscription } from 'rxjs';
 import { ChoosenCity } from '../interfaces/choosen-city';
 
@@ -14,6 +14,7 @@ export class CitiesService {
 
   public cityImg: string | undefined;        /*We'll use a variable instead of a subject. We'll change if it's needed in the explore page*/
   public cityCord: maplibregl.LngLatLike | undefined;
+  public places$: Observable<DocumentData> | undefined;
 
 
   constructor(private readonly afs: AngularFirestore) {
@@ -26,7 +27,7 @@ export class CitiesService {
     return this.locationCollection.doc(id).valueChanges();
   }
 
-  getImg(id: string) {
+  getCityImg(id: string) {
     this.cityImg = ""  /*If no city is chosen, this will be the default*/
 
     if (id) {
@@ -43,10 +44,13 @@ export class CitiesService {
     if (id) {
       this.currentOpp = this.locationCollection.doc(id.toLowerCase()).get().subscribe(f => {
         this.cityCord = [f.data().center._long, f.data().center._lat]
-        console.log(this.cityCord)
       })
     }
     return this.cityCord
+  }
+
+  getCityEvents(id: string) {
+    this.places$ = this.locationCollection.doc(id.toLowerCase()).collection("places").valueChanges()
   }
 
 

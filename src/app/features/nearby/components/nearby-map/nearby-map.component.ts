@@ -9,9 +9,9 @@ import { environment } from 'src/environments/environment';
 })
 export class NearbyMapComponent implements OnInit {
   @Input() mapCord: any;  /*Dynamic value that updates map when parent notifies it to*/
+  @Input() mapPlaces: any;
 
   constructor() { }
-
 
 
   alert(item: string): any {
