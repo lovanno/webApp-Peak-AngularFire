@@ -10,5 +10,6 @@
     <h2>{{citySelect.value}}</h2>
     <img *ngIf="citiesServ.cityImg" class = "cityImg" [src]="citiesServ.cityImg">
 
-<!-- I tried to seperate event pins from the map. Nesting a child component inside <app-nearby-map> didn't work with the map since ng-content is for static content projection-->
+<!-- I tried seperating event pins from the map by nesting a child component inside <app-nearby-map> 
+    This didn't work since ng-content is only used for static content projection -->
 <app-nearby-map [mapCord]="citiesServ.cityCord" [mapPlaces]="(citiesServ.places$ | async)"></app-nearby-map>   

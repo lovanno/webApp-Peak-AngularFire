@@ -29,7 +29,33 @@
           </mgl-control>
           
         <div *ngFor="let place of mapPlaces">
-          <mgl-marker [lngLat]="[place.cord.longitude, place.cord.latitude]"></mgl-marker>
+          <mgl-marker [lngLat]="[place.cord.longitude, place.cord.latitude]">
+            <div *ngIf="place.type == 'attraction'">
+                <img (click)="alert(place.name)" class="markerIcon" src="../../../../../assets/icon_attractions.svg">
+                <p class = "markerName">{{place.name}}</p>
+            </div>
+
+            <div *ngIf="place.type == 'entertainment'">
+              <img (click)="alert(place.name)" class="markerIcon" src="../../../../../assets/icon_entertainment.svg">
+              <p class = "markerName">{{place.name}}</p>
+            </div>
+
+            <div *ngIf="place.type == 'restaurant'">
+              <img (click)="alert(place.name)" class="markerIcon" src="../../../../../assets/icon_restaurants.svg">
+              <p class = "markerName">{{place.name}}</p>
+            </div>
+
+            <div *ngIf="place.type == 'scenery'">
+              <img (click)="alert(place.name)" class="markerIcon" src="../../../../../assets/icon_scenery.svg">
+              <p class = "markerName">{{place.name}}</p>
+            </div>
+
+            <div *ngIf="place.type == 'shopping'">
+              <img (click)="alert(place.name)" class="markerIcon" src="../../../../../assets/icon_shopping.svg">
+              <p class = "markerName">{{place.name}}</p>
+            </div>
+            
+          </mgl-marker>
         </div>
 
       </mgl-map>
