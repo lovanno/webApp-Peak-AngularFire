@@ -43,6 +43,7 @@ export class CitiesService {
     if (id) {
       this.currentOpp = this.locationCollection.doc(id.toLowerCase()).get().subscribe(f => {
         this.cityCord = [f.data().center._long, f.data().center._lat]
+        console.log(this.cityCord)
       })
     }
     return this.cityCord
