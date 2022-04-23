@@ -27,36 +27,47 @@
                 <div>Latitude:&nbsp;{{ coordinates[1] }}</div>
             </div>
           </mgl-control>
-          
-        <div *ngFor="let place of mapPlaces">
+ 
+        <div *ngFor="let place of mapPlaces; index as i;">
+            
           <mgl-marker [lngLat]="[place.cord.longitude, place.cord.latitude]">
             <div *ngIf="place.type == 'attraction'">
-                <img (click)="alert(place.name)" class="markerIcon" src="../../../../../assets/icon_attractions.svg">
+                <img (click)="openEvent(i)" class="markerIcon" src="../../../../../assets/icon_attractions.svg">
                 <p class = "markerName">{{place.name}}</p>
             </div>
 
             <div *ngIf="place.type == 'entertainment'">
-              <img (click)="alert(place.name)" class="markerIcon" src="../../../../../assets/icon_entertainment.svg">
+              <img (click)="openEvent(i)" class="markerIcon" src="../../../../../assets/icon_entertainment.svg">
               <p class = "markerName">{{place.name}}</p>
             </div>
 
             <div *ngIf="place.type == 'restaurant'">
-              <img (click)="alert(place.name)" class="markerIcon" src="../../../../../assets/icon_restaurants.svg">
+              <img (click)="openEvent(i)" class="markerIcon" src="../../../../../assets/icon_restaurants.svg">
               <p class = "markerName">{{place.name}}</p>
             </div>
 
             <div *ngIf="place.type == 'scenery'">
-              <img (click)="alert(place.name)" class="markerIcon" src="../../../../../assets/icon_scenery.svg">
+              <img (click)="openEvent(i)" class="markerIcon" src="../../../../../assets/icon_scenery.svg">
               <p class = "markerName">{{place.name}}</p>
             </div>
 
             <div *ngIf="place.type == 'shopping'">
-              <img (click)="alert(place.name)" class="markerIcon" src="../../../../../assets/icon_shopping.svg">
+              <img (click)="openEvent(i)" class="markerIcon" src="../../../../../assets/icon_shopping.svg">
               <p class = "markerName">{{place.name}}</p>
             </div>
-            
+
+            <mgl-popup *ngIf="place.toggle" [lngLat]="[place.cord.longitude, place.cord.latitude]" [closeOnClick]="false">
+                <img class = "eventPopImg" [src]="place.displayImg">
+                <p>{{place.type}}</p>
+                <p>{{place.name}}</p>
+                <p>{{place.rating}}</p>
+
+                <p>{{place.city}}</p>
+            </mgl-popup>
+
+
           </mgl-marker>
         </div>
-
+      
       </mgl-map>
   </div>

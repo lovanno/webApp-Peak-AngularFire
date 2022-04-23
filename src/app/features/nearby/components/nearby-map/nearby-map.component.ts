@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MapMouseEvent } from 'maplibre-gl';
+import { MapLayerMouseEvent, MapMouseEvent } from 'maplibre-gl';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -10,13 +10,37 @@ import { environment } from 'src/environments/environment';
 export class NearbyMapComponent implements OnInit {
   @Input() mapCord: any;  /*Dynamic value that updates map when parent notifies it to*/
   @Input() mapPlaces: any;
+  public count!: number;
+  public track = true;
 
   constructor() { }
 
-
-  alert(item: string): any {
-    console.log(item);
+  closeAllEvents() {
+    for (let i = 0; i < this.mapPlaces.length; i++) {
+      this.mapPlaces[i].toggle = false
+    }
   }
+
+  openEvent(item: number): any {
+    if (this.track == true) {
+      this.mapPlaces[item].toggle = !this.mapPlaces[item].toggle;
+      this.track = false;
+    }
+    else {
+      this.track = true;
+      this.closeAllEvents()
+      this.mapPlaces[item].toggle = false;
+    }
+
+    if (this.count !== item) {
+      this.closeAllEvents()
+      this.mapPlaces[item].toggle = true;
+    }
+
+    this.count = item;
+  }
+
+
 
   /*The following can be used to toggle custom map looks in future*/
   mapStyle: string = 'mapbox://styles/elpierrot/ckl0qlk1q0skq17s0x0hhjli3';
