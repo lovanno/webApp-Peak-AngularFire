@@ -1,27 +1,102 @@
-# Peak
+# Peak (Work in Progress)   
+#### Make fun plans based on your location and explore different ways to enjoy your life
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.5.
+![displayImg!](src/assets/peakProgress.png)
 
-## Development server
+**Stack:** *Angular (SASS) and Firestore*
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+#### **Objective 📈:** **Create an exciting web application that scales and pushes your creativity**
 
-## Code scaffolding
+**Requirements** 🚦
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+• *Must create 3 major feature sections that continuously builds on top of its own foundation*
 
-## Build
+• *Must have authenticated users with specific privileges and a followers feed feature*
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+• *Must have secure firestore/firebase rules and must manage data effectively (caching api calls between pages, filtering data through rxjs and use subjects, etc)*
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+&nbsp;
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+# Roadmap 📜
 
-## Further help
+## Explore Hub 1 🌌
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+*Filtering Data*
+
+&emsp; &emsp;• Filter events based on price
+
+&emsp; &emsp;• Filter between individual activities or compound activities
+
+&emsp; &emsp;• Filter by generalized or personalized plans/events
+
+&emsp; &emsp;• Filter by outdoors or indoor activities
+
+&emsp; &emsp;• Filter by time of year (winter vs summer)
+
+
+
+## Nearby Hub 2 🌌
+
+*Show a Data visualization of how busy each place gets*
+
+*Display different location icons on the map. (Don’t display info unless tapped)*
+
+*Allow users to change the map style*/
+
+*Allow users to check in to places + track how often a user has visited a place*
+
+*Get commute estimates based on your location*
+
+*Check the distance and est time between different locations*
+
+*Add a UI menu at the bottom of the map view to see:*
+
+&emsp; &emsp;• What's closest to someone (refreshes as you move over the map)
+
+&emsp; &emsp;• Or view your only favorite places
+
+*Random place spinner. Randomly select a place to visit. You can also use this feature with your favorites*
+
+
+
+## Profile Hub 3 🌌
+
+*Save plan ideas in your “future fun” profile section*
+
+*See how often you visited a place* 
+
+*See places you recently visited*
+
+*Choose your preferences and set a budget*/
+
+*Add upcoming activities section. This will show plans near you*
+
+*Allow someone to sign up for activities. Put them in a section for them to see. Maybe personal page*
+
+&emsp; &emsp;
+
+# Current Problems 😎
+
+### Major - None
+
+### Minor
+
+• **(Apr 21, 2022): simplified comp and fixed out of sync city issue  commit: 116aab1e6ca1b9a2ad03f6a1071ede2f3e25c3d9**
+
+&emsp; &emsp;When breaking down the logic in the nearby comp, I had a lot of trouble updating the map and displaying images from the user's selection. 
+I tried using multiple variations of input/output functions and using NgOnChanges but these attempts didn't work because I needed
+to use a setter to make API calls from new input values. This was the drawback with input/output.
+
+> Allowing API calls through inputed values
+  @Input sent(value: any) {
+     if (value !== undefined || '') {
+       this._apiResponse = value.toLowerCase(); 
+      }
+  }
+  
+🔑*Allow inefficiencies to guide you. Realizing this, fixed everything. The user selection should've been in the parent (view map) because it controls everything. If I want to see new city activities, I'd toggle the user selection. This structure change allowed the city data to stay in sync and allow me to update the explore page in future.
+
+&nbsp;
+
