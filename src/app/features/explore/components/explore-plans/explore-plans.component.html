@@ -7,8 +7,7 @@
             <p class="planArticleSubtype" >{{item.subtype}}</p>
             <p class="planArticleTitle">{{item.name}}</p>
             
-            <!--I have to find a way to replace %20 into - dashes. It works for the time being-->
-            <a [routerLink]="['/explore/plans/', item.name]">Check Article</a>
+            <a [routerLink]="['/explore/plans/', (item.name.toLowerCase() | hyphenate)]">Check Article</a>
         </div>
     </div>
 </div>

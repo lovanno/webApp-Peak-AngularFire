@@ -6,7 +6,7 @@ import { ExploreArticleComponent } from './components/explore-article/explore-ar
 import { ExplorePlansComponent } from './components/explore-plans/explore-plans.component';
 import { ExploreEventsComponent } from './components/explore-events/explore-events.component';
 import { ExploreEventsArticleComponent } from './components/explore-events-article/explore-events-article.component';
-
+import { CoreModule } from 'src/app/core/core.module';
 
 
 @NgModule({
@@ -19,7 +19,8 @@ import { ExploreEventsArticleComponent } from './components/explore-events-artic
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    CoreModule
   ],
   exports: [
     ExploreHomeComponent,

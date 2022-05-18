@@ -13,6 +13,6 @@
         </div>
 
         <img class ="eventImg" [src] ='events.displayImg'>
-        <a [routerLink]="['/explore/events', events.name]">{{events.name}}</a>
+        <a [routerLink]="['/explore/events', (events.name.toLowerCase() | hyphenate)]">{{events.name}}</a>
     </div>
 </div>

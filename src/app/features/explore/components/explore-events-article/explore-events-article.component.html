@@ -1,6 +1,6 @@
 
 
-<div *ngFor="let item of specificEvent | async">
+<div *ngFor="let item of $specificEvent | async">
     <p class="eventPerformer">Performer: {{item.performer}}</p>
     
     <p class="eventAddress">{{item.location}}</p>

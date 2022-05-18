@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { PlansService } from '../../services/plans.service';
 
 @Component({
@@ -6,15 +6,12 @@ import { PlansService } from '../../services/plans.service';
   templateUrl: './explore-plans.component.html',
   styleUrls: ['./explore-plans.component.scss']
 })
-export class ExplorePlansComponent implements OnInit {
+export class ExplorePlansComponent {
   public allArticles: any;
   public toggleValue = "events";
 
   constructor(public plansServ: PlansService) {
     this.allArticles = plansServ.getAllPlans().valueChanges();
-  }
-
-  ngOnInit(): void {
   }
 
 }
