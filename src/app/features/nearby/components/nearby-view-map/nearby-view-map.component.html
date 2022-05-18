@@ -1,6 +1,6 @@
 <label for="city-select">Choose a city:</label>
 
-    <select name="cities" [(ngModel)]="citySelec"  #citySelect (change)="updateCity(citySelect.value)">
+    <select name="cities" [(ngModel)]="citySelec"  #citySelect (ngModelChange)="updateCity(citySelect.value)">
         <option value="">--Please choose an option--</option>
         <option value="Chicago">Chicago</option>
         <option value="New York City">New York City</option>
@@ -9,7 +9,7 @@
 
 
 
-    <h2>{{newCity}}</h2>
+    <h2>{{citySelect.value}}</h2>
     <img *ngIf="citiesServ.cityImg" class = "cityImg" [src]="citiesServ.cityImg">
 
 

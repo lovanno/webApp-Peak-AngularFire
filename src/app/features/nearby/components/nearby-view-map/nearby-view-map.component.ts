@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit, OnDestroy, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { CitiesService } from '../../services/cities.service';
 import { CurrentCityService } from '../../services/current-city.service';
@@ -28,7 +28,6 @@ export class NearbyViewMapComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.currentRoute = this.prettyUrl(this.rout.url.slice(8));
     this.currentRoute = this.currentRoute.toLocaleLowerCase();
-    console.log(this.currentRoute);
 
     if (this.currentCity.onlyCities.includes(this.currentRoute)) {
       this.currentCity.setCity(this.currentRoute);
@@ -36,13 +35,10 @@ export class NearbyViewMapComponent implements OnInit, OnDestroy {
     }
 
     this.$city = this.currentCity.getCity().subscribe(val => {
-      this.newCity = val;
+      this.newCity = val.toLowerCase();
     })
-
     this.citySelec = this.capitalizeSent(this.newCity);
   }
-
-
 
 
   updateCity(name: string | undefined) {
@@ -51,6 +47,7 @@ export class NearbyViewMapComponent implements OnInit, OnDestroy {
       this.citiesServ.getCityCord(name!)
       this.citiesServ.getCityEvents(name!);
       this.currentCity.setCity(name!);
+      this.rout.navigate([`nearby/${name?.toLowerCase()}`]);     /*Changes the routes based on drop down menu*/
     }
     else {
       console.log("Welcome to Peaks. Choose a city to start")

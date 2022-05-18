@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { MapMouseEvent } from 'maplibre-gl';
 
 @Component({
@@ -13,7 +13,7 @@ export class NearbyMapComponent implements OnInit {
   public count!: number;
   public track = true;
 
-  constructor() { }
+  constructor(private ref: ChangeDetectorRef) { }
 
   closeAllEvents() {
     for (let i = 0; i < this.mapPlaces.length; i++) {
@@ -72,6 +72,12 @@ export class NearbyMapComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+
+
+  ngAfterContentChecked() {
+    this.ref.detectChanges();
   }
 
 
