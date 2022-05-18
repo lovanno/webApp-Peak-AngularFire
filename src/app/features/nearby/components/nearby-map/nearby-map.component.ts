@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { MapMouseEvent } from 'maplibre-gl';
 
 @Component({
@@ -6,7 +6,7 @@ import { MapMouseEvent } from 'maplibre-gl';
   templateUrl: './nearby-map.component.html',
   styleUrls: ['./nearby-map.component.scss']
 })
-export class NearbyMapComponent implements OnInit {
+export class NearbyMapComponent {
   @Input() mapCord: any;  /*Dynamic value that updates map when parent notifies it to*/
   @Input() mapPlaces: any;
   @Input() sendCity: any;
@@ -40,8 +40,6 @@ export class NearbyMapComponent implements OnInit {
     this.count = item;
   }
 
-
-
   /*The following can be used to toggle custom map looks in future*/
   mapStyle: string = 'mapbox://styles/elpierrot/ckl0qlk1q0skq17s0x0hhjli3';
   layerPaint = {
@@ -54,31 +52,14 @@ export class NearbyMapComponent implements OnInit {
     this.layerPaint = { ...this.layerPaint, 'circle-color': color };
   }
 
-  /*Marker Events*/
-  /*onDragStart(event: MapMouseEvent) {
-    console.log('onDragStart', event);
-  }
-
-  onDragEnd(event: MapMouseEvent) {
-    console.log('onDragEnd', event);
-    console.log('onDrag', event);
-
-    (featureDragStart)="onDragStart($event)"
-    (featureDragEnd)="onDragEnd($event)"
-  }*/
 
   onDrag(event: MapMouseEvent) {
     this.coordinates = event.lngLat.toArray();
   }
 
-  ngOnInit(): void {
-  }
-
-
 
   ngAfterContentChecked() {
-    this.ref.detectChanges();
+    this.ref.detectChanges();     /*prevents ExpressionChangedAfterItHasBeenCheckedError*/
   }
-
 
 }

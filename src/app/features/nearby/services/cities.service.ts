@@ -4,7 +4,7 @@ import { Observable, Subscription } from 'rxjs';
 import { ChoosenCity } from '../interfaces/choosen-city';
 
 @Injectable({
-  providedIn: 'root'      /*Will have to research how singletons affect overall memory*/
+  providedIn: 'root'
 })
 export class CitiesService {
   private locationPath = '/locations';

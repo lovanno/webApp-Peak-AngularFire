@@ -1,5 +1,5 @@
-import { Component, Output, EventEmitter, OnInit, OnDestroy, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { Component, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { CitiesService } from '../../services/cities.service';
 import { CurrentCityService } from '../../services/current-city.service';
 import { Router } from '@angular/router';
@@ -16,9 +16,7 @@ export class NearbyViewMapComponent implements OnInit, OnDestroy {
   @Output() mapPlaces = new EventEmitter();
   @Output() sendCity = new EventEmitter();
 
-  cityString: string | undefined;
-  cityCordString: any;
-  $city!: Subscription;
+  $getCity!: Subscription;
   newCity!: string;
   currentRoute!: string;
   citySelec!: string;
@@ -26,15 +24,15 @@ export class NearbyViewMapComponent implements OnInit, OnDestroy {
   constructor(public citiesServ: CitiesService, public currentCity: CurrentCityService, public rout: Router) {
   }
   ngOnInit(): void {
-    this.currentRoute = this.prettyUrl(this.rout.url.slice(8));
-    this.currentRoute = this.currentRoute.toLocaleLowerCase();
+    this.currentRoute = this.prettyUrl(this.rout.url.slice(8));   /*currentRoute is used when someone navigates to the page without manually setting a city*/
+    this.currentRoute = this.currentRoute.toLocaleLowerCase();    /*It will grab the url "nearby/{city}", slice it to get the city and lower case it*/
 
-    if (this.currentCity.onlyCities.includes(this.currentRoute)) {
+    if (this.currentCity.onlyCities.includes(this.currentRoute)) {    /*Then, the view is updated if the city is in our list*/
       this.currentCity.setCity(this.currentRoute);
       this.updateCity(this.currentRoute);
     }
 
-    this.$city = this.currentCity.getCity().subscribe(val => {
+    this.$getCity = this.currentCity.getCity().subscribe(val => {   /*!This sets the behaviorsubject within our app. It will be used once the app develops more*/
       this.newCity = val.toLowerCase();
     })
     this.citySelec = this.capitalizeSent(this.newCity);
@@ -69,7 +67,7 @@ export class NearbyViewMapComponent implements OnInit, OnDestroy {
 
 
   ngOnDestroy() {
-    this.$city.unsubscribe();
+    this.$getCity.unsubscribe();
   }
 
 }
