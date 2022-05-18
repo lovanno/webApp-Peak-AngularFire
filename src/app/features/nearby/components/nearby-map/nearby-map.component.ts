@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MapLayerMouseEvent, MapMouseEvent } from 'maplibre-gl';
-import { environment } from 'src/environments/environment';
+import { MapMouseEvent } from 'maplibre-gl';
 
 @Component({
   selector: 'app-nearby-map',
@@ -10,6 +9,7 @@ import { environment } from 'src/environments/environment';
 export class NearbyMapComponent implements OnInit {
   @Input() mapCord: any;  /*Dynamic value that updates map when parent notifies it to*/
   @Input() mapPlaces: any;
+  @Input() sendCity: any;
   public count!: number;
   public track = true;
 

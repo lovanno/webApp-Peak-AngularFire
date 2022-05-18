@@ -28,6 +28,14 @@ const routes: Routes = [
     loadChildren: () => import('./pages/explore-page/explore-page.module').then((m) => m.ExplorePageModule)
   },
   {
+    path: 'nearby/:location/:places',
+    loadChildren: () => import('./pages/nearby-places-page/nearby-places-page.module').then((m) => m.NearbyPlacesPageModule)
+  },
+  {
+    path: 'nearby/:location',
+    loadChildren: () => import('./pages/nearby-page/nearby-page.module').then((m) => m.NearbyPageModule)
+  },
+  {
     path: 'nearby',
     loadChildren: () => import('./pages/nearby-page/nearby-page.module').then((m) => m.NearbyPageModule)
   },

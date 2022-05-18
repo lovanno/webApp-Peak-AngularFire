@@ -53,6 +53,9 @@ export class CitiesService {
     this.places$ = this.locationCollection.doc(id.toLowerCase()).collection("places").valueChanges()
   }
 
+  getSpecificPlace(city: string, id: string) {
+    return this.locationCollection.doc(city.toLowerCase()).collection("places").doc(id.toLowerCase()).collection("specifics").doc(id.toLowerCase()).valueChanges();
+  }
 
 
   ngOnDestroy() {

@@ -3,18 +3,25 @@ import { CommonModule } from '@angular/common';
 import { NearbyMapComponent } from './components/nearby-map/nearby-map.component';
 import { NgxMapLibreGLModule } from '@maplibre/ngx-maplibre-gl';
 import { NearbyViewMapComponent } from './components/nearby-view-map/nearby-view-map.component';
+import { NearbyPlaceDetailsComponent } from './components/nearby-place-details/nearby-place-details.component';
+import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     NearbyMapComponent,
     NearbyViewMapComponent,
+    NearbyPlaceDetailsComponent
   ],
   imports: [
     CommonModule,
     NgxMapLibreGLModule,
+    RouterModule,
+    FormsModule
   ],
   exports: [
-    NearbyViewMapComponent
+    NearbyViewMapComponent,
+    NearbyPlaceDetailsComponent
   ]
 })
 export class NearbyModule { }
