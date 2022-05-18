@@ -6,18 +6,19 @@ import { NearbyViewMapComponent } from './components/nearby-view-map/nearby-view
 import { NearbyPlaceDetailsComponent } from './components/nearby-place-details/nearby-place-details.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-
+import { CoreModule } from 'src/app/core/core.module';
 @NgModule({
   declarations: [
     NearbyMapComponent,
     NearbyViewMapComponent,
-    NearbyPlaceDetailsComponent
+    NearbyPlaceDetailsComponent,
   ],
   imports: [
     CommonModule,
     NgxMapLibreGLModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    CoreModule
   ],
   exports: [
     NearbyViewMapComponent,

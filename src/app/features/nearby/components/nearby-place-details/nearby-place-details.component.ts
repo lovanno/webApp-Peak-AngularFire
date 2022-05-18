@@ -23,13 +23,13 @@ export class NearbyPlaceDetailsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.currentCity = this.router.parseUrl(this.router.url).root.children['primary'].segments[1].path;   /*gets the city url part "nearby/{city}" */
-    this.appCity.setCity(this.currentCity);
+    this.appCity.setCity(this.prettyUrl(this.currentCity));
 
     this.$city = this.appCity.currentCity$.subscribe(f => this.currentCity = f);
     this.currentRoute = this.router.parseUrl(this.router.url).root.children['primary'].segments[2].path; /*gets the place url "nearby/city/{place}"*/
 
     /*First, the specificPlace is grabbed. This returns an observable and then we subscribe to it to get its value*/
-    this.$specificPlace = this.citiesServ.getSpecificPlace((this.currentCity.toLowerCase()), this.currentRoute.toLowerCase())
+    this.$specificPlace = this.citiesServ.getSpecificPlace((this.currentCity.toLowerCase()), this.prettyUrl(this.currentRoute))
       .subscribe(f => {
         if (f) {
           this.cityDetails = f
@@ -39,7 +39,7 @@ export class NearbyPlaceDetailsComponent implements OnInit, OnDestroy {
 
 
   prettyUrl(childRoute: string) {
-    childRoute = childRoute.replace(/%20/g, ' ')
+    childRoute = childRoute.replace(/-/g, ' ');
     return childRoute
   }
 

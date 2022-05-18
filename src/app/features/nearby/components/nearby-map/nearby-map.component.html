@@ -63,7 +63,7 @@
                 <p>{{place.rating}}</p>
 
                 <p>{{place.city}}</p>
-                <a [routerLink]="['/nearby', sendCity, place.name]">See More</a>
+                <a [routerLink]="['/nearby', (sendCity | hyphenate), (place.name.toLowerCase() | hyphenate)]">See More</a>
             </mgl-popup>
 
 

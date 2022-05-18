@@ -45,7 +45,7 @@ export class NearbyViewMapComponent implements OnInit, OnDestroy {
       this.citiesServ.getCityCord(name!)
       this.citiesServ.getCityEvents(name!);
       this.currentCity.setCity(name!);
-      this.rout.navigate([`nearby/${name?.toLowerCase()}`]);     /*Changes the routes based on drop down menu*/
+      this.rout.navigate([`nearby/${this.hyphen(name!.toLowerCase())}`]);     /*Changes the routes based on drop down menu*/
     }
     else {
       console.log("Welcome to Peaks. Choose a city to start")
@@ -59,8 +59,12 @@ export class NearbyViewMapComponent implements OnInit, OnDestroy {
   }
 
 
+  hyphen(value: string): string {
+    return value.replace(new RegExp(' ', 'g'), '-');
+  }
+
   prettyUrl(childRoute: string) {
-    childRoute = childRoute.replace(/%20/g, ' ')
+    childRoute = childRoute.replace(/-/g, ' ')
     return childRoute
   }
 
