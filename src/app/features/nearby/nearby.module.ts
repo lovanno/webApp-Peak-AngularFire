@@ -8,12 +8,14 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CoreModule } from 'src/app/core/core.module';
 import { NearbyUpdateMapComponent } from './components/nearby-update-map/nearby-update-map.component';
+import { NearbyHomepinComponent } from './components/nearby-homepin/nearby-homepin.component';
 @NgModule({
   declarations: [
     NearbyMapComponent,
     NearbyViewMapComponent,
     NearbyPlaceDetailsComponent,
     NearbyUpdateMapComponent,
+    NearbyHomepinComponent,
   ],
   imports: [
     CommonModule,

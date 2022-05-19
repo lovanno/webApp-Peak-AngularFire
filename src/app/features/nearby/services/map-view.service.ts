@@ -7,6 +7,9 @@ export class MapViewService {
   mapToggle = true;
   mapUrl!: string;
   mapStyle = "Night";
+  homeCord: any;
+
+
 
   constructor() { }
 

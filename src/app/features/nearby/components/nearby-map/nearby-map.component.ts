@@ -12,6 +12,7 @@ export class NearbyMapComponent implements OnInit {
   @Input() sendCity: any;
   @Input() mapStyle!: string;
   @Input() iconColor!: string;
+  @Input() sendHomeCord: any;
 
   public count!: number;
   public track = true;

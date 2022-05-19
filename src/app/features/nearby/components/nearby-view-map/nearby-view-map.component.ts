@@ -1,9 +1,10 @@
-import { Component, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit, OnDestroy, Input } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { CitiesService } from '../../services/cities.service';
 import { CurrentCityService } from '../../services/current-city.service';
 import { Router } from '@angular/router';
 import { MapViewService } from '../../services/map-view.service';
+import { Cord } from '../../interfaces/cord';
 
 
 @Component({
@@ -75,6 +76,10 @@ export class NearbyViewMapComponent implements OnInit, OnDestroy {
 
   changeClicked(event: any) {
     this.mapViewServ.updateMap();
+  }
+
+  changeHome(cords: Cord<object>) {
+    this.mapViewServ.homeCord = cords;
   }
 
 

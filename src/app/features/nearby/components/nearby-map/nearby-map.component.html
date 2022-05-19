@@ -69,6 +69,11 @@
 
           </mgl-marker>
         </div>
+
+        <mgl-marker *ngIf="sendHomeCord" [lngLat]="[sendHomeCord.long, sendHomeCord.lat]">
+          <img class class="markerIcon" src="../../../../../assets/icon_home.svg">
+          <p>Home</p>
+        </mgl-marker>
       
       </mgl-map>
   </div>

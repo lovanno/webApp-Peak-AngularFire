@@ -13,10 +13,16 @@
         <img *ngIf="citiesServ.cityImg" class = "cityImg" [src]="citiesServ.cityImg">
     </div>
 
-    <app-nearby-update-map [mapName]="mapViewServ.mapStyle" (ChangeMap)="changeClicked($event)"></app-nearby-update-map>
+    <div>
+        <app-nearby-update-map [mapName]="mapViewServ.mapStyle" (ChangeMap)="changeClicked($event)"></app-nearby-update-map>
+        <app-nearby-homepin (setCords)="changeHome($event)" [sendHomeCord]="mapViewServ.homeCord"></app-nearby-homepin>
+    </div>
+
 </div>
 
 
 <!-- I tried seperating event pins from the map by nesting a child component inside <app-nearby-map> 
     This didn't work since ng-content is only used for static content projection -->
-<app-nearby-map [mapStyle]="mapViewServ.mapUrl" [iconColor]="mapViewServ.mapStyle"[mapCord]="citiesServ.cityCord" [mapPlaces]="(citiesServ.places$ | async)" [sendCity]="newCity"></app-nearby-map>   
+<app-nearby-map [mapStyle]="mapViewServ.mapUrl" [iconColor]="mapViewServ.mapStyle"[mapCord]="citiesServ.cityCord" 
+[mapPlaces]="(citiesServ.places$ | async)" [sendCity]="newCity"
+[sendHomeCord]="mapViewServ.homeCord"></app-nearby-map>   

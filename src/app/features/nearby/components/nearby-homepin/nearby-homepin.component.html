@@ -1,0 +1,12 @@
+<p>Change Your Home Pin</p>
+
+<div *ngIf="sendHomeCord">
+   <p>Home Cord:</p>
+   <p>{{sendHomeCord.lat}}, {{sendHomeCord.long}}</p>
+</div>
+
+<form #setPin="ngForm"(ngSubmit)="sendCord(setPin.value); setPin.resetForm()">
+   <input type="number" ngModel placeholder="Enter Longitude" name="long" required min="-90" max="90">
+    <input type="number" ngModel placeholder="Enter Latitude" name="lat" required min="-90" max="90">
+   <button [disabled]="!setPin.valid">Update Home</button>
+</form>
