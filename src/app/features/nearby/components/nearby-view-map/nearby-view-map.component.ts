@@ -17,6 +17,7 @@ export class NearbyViewMapComponent implements OnInit, OnDestroy {
   @Output() mapPlaces = new EventEmitter();
   @Output() sendCity = new EventEmitter();
   @Output() mapName = new EventEmitter();
+  @Output() iconColor = new EventEmitter();
 
   $getCity!: Subscription;
   newCity!: string;

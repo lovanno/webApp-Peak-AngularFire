@@ -41,9 +41,9 @@
 
 *Show a Data visualization of how busy each place gets*
 
-*Display different location icons on the map. (Don’t display info unless tapped)*
+Display different location icons on the map. (Don’t display info unless tapped) ✅
 
-*Allow users to change the map style*/
+Allow users to change the map style ✅
 
 *Allow users to check in to places + track how often a user has visited a place*
 
@@ -69,7 +69,7 @@
 
 *See places you recently visited*
 
-*Choose your preferences and set a budget*/
+*Choose your preferences and set a budget*
 
 *Add upcoming activities section. This will show plans near you*
 

@@ -19,6 +19,28 @@
     color: white;
   }
 
+  /*Since filters affect text color, I had to make different versions. The 2 is added w/ double bracket interpolation {{iconColor + 2}} (black + 2)*/
+  .Night{
+    filter: invert(100%) sepia(1%) saturate(0%) hue-rotate(225deg) brightness(101%) contrast(101%);
+  }
+
+  .Night2{
+    color: white;
+  }
+
+  .Morning{
+    filter: brightness(0%);
+    color: black;
+  }
+
+  .Morning{
+    filter: brightness(0%);
+  }
+
+  .Morning2{
+    color: black;
+  }
+
   .eventPopImg{
     height: 110px;
     width: 175px;

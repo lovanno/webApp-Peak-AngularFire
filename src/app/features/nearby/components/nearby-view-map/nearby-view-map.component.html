@@ -19,4 +19,4 @@
 
 <!-- I tried seperating event pins from the map by nesting a child component inside <app-nearby-map> 
     This didn't work since ng-content is only used for static content projection -->
-<app-nearby-map [mapStyle]="mapViewServ.mapUrl" [mapCord]="citiesServ.cityCord" [mapPlaces]="(citiesServ.places$ | async)" [sendCity]="newCity"></app-nearby-map>   
+<app-nearby-map [mapStyle]="mapViewServ.mapUrl" [iconColor]="mapViewServ.mapStyle"[mapCord]="citiesServ.cityCord" [mapPlaces]="(citiesServ.places$ | async)" [sendCity]="newCity"></app-nearby-map>   
