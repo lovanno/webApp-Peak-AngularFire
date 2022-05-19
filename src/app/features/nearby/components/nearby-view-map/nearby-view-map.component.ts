@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { CitiesService } from '../../services/cities.service';
 import { CurrentCityService } from '../../services/current-city.service';
 import { Router } from '@angular/router';
+import { MapViewService } from '../../services/map-view.service';
 
 
 @Component({
@@ -15,14 +16,16 @@ export class NearbyViewMapComponent implements OnInit, OnDestroy {
   @Output() cityCord = new EventEmitter();
   @Output() mapPlaces = new EventEmitter();
   @Output() sendCity = new EventEmitter();
+  @Output() mapName = new EventEmitter();
 
   $getCity!: Subscription;
   newCity!: string;
   currentRoute!: string;
   citySelec!: string;
+  sendMap: any;
 
-  constructor(public citiesServ: CitiesService, public currentCity: CurrentCityService, public rout: Router) {
-  }
+  constructor(public citiesServ: CitiesService, public currentCity: CurrentCityService, public mapViewServ: MapViewService, public rout: Router) { }
+
   ngOnInit(): void {
     this.currentRoute = this.prettyUrl(this.rout.url.slice(8));   /*currentRoute is used when someone navigates to the page without manually setting a city*/
     this.currentRoute = this.currentRoute.toLocaleLowerCase();    /*It will grab the url "nearby/{city}", slice it to get the city and lower case it*/
@@ -66,6 +69,11 @@ export class NearbyViewMapComponent implements OnInit, OnDestroy {
   prettyUrl(childRoute: string) {
     childRoute = childRoute.replace(/-/g, ' ')
     return childRoute
+  }
+
+
+  changeClicked(event: any) {
+    this.mapViewServ.updateMap();
   }
 
 

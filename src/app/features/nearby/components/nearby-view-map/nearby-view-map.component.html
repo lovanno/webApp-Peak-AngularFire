@@ -1,15 +1,22 @@
-<label for="city-select">Choose a city:</label>
-    <select name="cities" [(ngModel)]="citySelec"  #citySelect (ngModelChange)="updateCity(citySelect.value)">
-        <option value="">--Please choose an option--</option>
-        <option value="Chicago">Chicago</option>
-        <option value="New York City">New York City</option>
-        <option value="San Francisco">San Francisco</option>
-    </select>
+<div class = "mapControlCont">
+    <div class = "selectCityCont">
 
-    <h2>{{citySelect.value}}</h2>
-    <img *ngIf="citiesServ.cityImg" class = "cityImg" [src]="citiesServ.cityImg">
+        <label for="city-select">Choose a city:</label>
+            <select name="cities" [(ngModel)]="citySelec"  #citySelect (ngModelChange)="updateCity(citySelect.value)">
+                <option value="">--Please choose an option--</option>
+                <option value="Chicago">Chicago</option>
+                <option value="New York City">New York City</option>
+                <option value="San Francisco">San Francisco</option>
+            </select>
+
+        <h2>{{citySelect.value}}</h2>
+        <img *ngIf="citiesServ.cityImg" class = "cityImg" [src]="citiesServ.cityImg">
+    </div>
+
+    <app-nearby-update-map [mapName]="mapViewServ.mapStyle" (ChangeMap)="changeClicked($event)"></app-nearby-update-map>
+</div>
 
 
 <!-- I tried seperating event pins from the map by nesting a child component inside <app-nearby-map> 
     This didn't work since ng-content is only used for static content projection -->
-<app-nearby-map [mapCord]="citiesServ.cityCord" [mapPlaces]="(citiesServ.places$ | async)" [sendCity]="newCity"></app-nearby-map>   
+<app-nearby-map [mapStyle]="mapViewServ.mapUrl" [mapCord]="citiesServ.cityCord" [mapPlaces]="(citiesServ.places$ | async)" [sendCity]="newCity"></app-nearby-map>   
