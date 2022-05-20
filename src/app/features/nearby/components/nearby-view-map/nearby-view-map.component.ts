@@ -5,6 +5,7 @@ import { CurrentCityService } from '../../services/current-city.service';
 import { Router } from '@angular/router';
 import { MapViewService } from '../../services/map-view.service';
 import { Cord } from '../../interfaces/cord';
+import { Pins } from '../../interfaces/pins';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class NearbyViewMapComponent implements OnInit, OnDestroy {
   @Output() sendCity = new EventEmitter();
   @Output() mapName = new EventEmitter();
   @Output() iconColor = new EventEmitter();
+  @Output() pin2 = new EventEmitter();
 
   $getCity!: Subscription;
   newCity!: string;
@@ -80,6 +82,11 @@ export class NearbyViewMapComponent implements OnInit, OnDestroy {
 
   changeHome(cords: Cord<object>) {
     this.mapViewServ.homeCord = cords;
+  }
+
+  setDistance(pinInfo: Pins) {
+    console.log(pinInfo);
+    this.mapViewServ.secondPin = pinInfo;
   }
 
 

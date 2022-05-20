@@ -63,6 +63,7 @@
                 <p>{{place.rating}}</p>
 
                 <p>{{place.city}}</p>
+                <button (click)="sendPin(place.name, [place.cord.longitude, place.cord.latitude])">See Distance from Home</button>
                 <a [routerLink]="['/nearby', (sendCity | hyphenate), (place.name.toLowerCase() | hyphenate)]">See More</a>
             </mgl-popup>
 

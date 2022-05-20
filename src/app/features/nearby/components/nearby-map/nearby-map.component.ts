@@ -1,5 +1,5 @@
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
-import { MapMouseEvent } from 'maplibre-gl';
+import { ChangeDetectorRef, Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { LngLat, MapMouseEvent } from 'maplibre-gl';
 
 @Component({
   selector: 'app-nearby-map',
@@ -13,9 +13,11 @@ export class NearbyMapComponent implements OnInit {
   @Input() mapStyle!: string;
   @Input() iconColor!: string;
   @Input() sendHomeCord: any;
+  @Output() updateDistance = new EventEmitter<any>();
 
   public count!: number;
   public track = true;
+  public sentPin!: object;
 
   constructor(private ref: ChangeDetectorRef) { }
 
@@ -61,6 +63,10 @@ export class NearbyMapComponent implements OnInit {
 
   onDrag(event: MapMouseEvent) {
     this.coordinates = event.lngLat.toArray();
+  }
+
+  sendPin(place: string, cord: LngLat[]) {
+    this.updateDistance.emit({ place, cord });
   }
 
 

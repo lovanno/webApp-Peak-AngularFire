@@ -1,0 +1,12 @@
+<h4>Set Distance Pins</h4>
+
+
+<div *ngIf="sendHomeCord">
+    <p>Pin 1: Home</p>
+    <p>{{sendHomeCord.lat}}, {{sendHomeCord.long}}</p>
+</div>
+
+<div *ngIf="pin2">
+    <p>Pin 2: {{pin2.place}}</p>
+    <p>{{pin2.cord[0]}}, {{pin2.cord[1]}}</p>
+</div>

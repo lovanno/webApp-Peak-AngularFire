@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { CoreModule } from 'src/app/core/core.module';
 import { NearbyUpdateMapComponent } from './components/nearby-update-map/nearby-update-map.component';
 import { NearbyHomepinComponent } from './components/nearby-homepin/nearby-homepin.component';
+import { NearbyDistancePinsComponent } from './components/nearby-distance-pins/nearby-distance-pins.component';
 @NgModule({
   declarations: [
     NearbyMapComponent,
@@ -16,6 +17,7 @@ import { NearbyHomepinComponent } from './components/nearby-homepin/nearby-homep
     NearbyPlaceDetailsComponent,
     NearbyUpdateMapComponent,
     NearbyHomepinComponent,
+    NearbyDistancePinsComponent,
   ],
   imports: [
     CommonModule,

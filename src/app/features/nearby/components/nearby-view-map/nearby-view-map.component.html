@@ -16,6 +16,7 @@
     <div>
         <app-nearby-update-map [mapName]="mapViewServ.mapStyle" (ChangeMap)="changeClicked($event)"></app-nearby-update-map>
         <app-nearby-homepin (setCords)="changeHome($event)" [sendHomeCord]="mapViewServ.homeCord"></app-nearby-homepin>
+        <app-nearby-distance-pins [pin2]="mapViewServ.secondPin" [sendHomeCord]="mapViewServ.homeCord"></app-nearby-distance-pins>
     </div>
 
 </div>
@@ -25,4 +26,4 @@
     This didn't work since ng-content is only used for static content projection -->
 <app-nearby-map [mapStyle]="mapViewServ.mapUrl" [iconColor]="mapViewServ.mapStyle"[mapCord]="citiesServ.cityCord" 
 [mapPlaces]="(citiesServ.places$ | async)" [sendCity]="newCity"
-[sendHomeCord]="mapViewServ.homeCord"></app-nearby-map>   
+[sendHomeCord]="mapViewServ.homeCord" (updateDistance)="setDistance($event)"></app-nearby-map>   
