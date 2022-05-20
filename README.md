@@ -81,6 +81,29 @@ Allow users to change the map style ✅
 
 ### Major - None
 
+
+• **(May 19, 2022): Limitation Feature: Check distance between locations**
+
+&emsp; &emsp; It's funny a simple distance line isn't possible within maplibre-gl's library. The lines' inputs only include init methods and this is why lines can't be dynamically created and displayed immediately on the map. The lines can only update if the entire map refreshes. I figured this out after switching 
+the map between night and morning mode. Withinthe first 2 attempts, a map view service variable was used. Since it isn't possible, I will have to use an alternative solution. 
+
+
+ >Attempt 1: Geometry 
+  <mgl-geojson-source id="oneline"><mgl-feature *ngIf="checkDistance" [geometry]="checkDistance"></mgl-feature></mgl-geojson-source>
+  <mgl-layer id="route" type="line" source="oneline" [layout]="{'line-join': 'round','line-cap': 'round'}" [paint]="{'line-color': '#888','line-width': 8}"></mgl-layer>
+
+  this.checkDistance = {  type: 'LineString' as const, coordinates: [[pointLat1, pointLong1],[pointLat2, pointLong2],],}}
+
+  >Attempt 2: Source
+  <mgl-layer id="LineString" type="line" [source]="source" [paint]="{'line-color': '#BF93E4','line-width': 5}" [layout]="{'line-join': 'round','line-cap': 'round'}" ></mgl-layer>
+  this.checkDistance = {type: 'geojson',data: {type: 'FeatureCollection',features: [{type: 'Feature',geometry: {type: 'LineString',properties: {},coordinates: <[number, number][]>[[0, 0],[107, 38],]}}]}}
+
+  >Attempt 3: Force Map Rerender
+  @ViewChild("mapper") mapp!: Map;
+  this.mapp._render
+
+  
+
 ### Minor
 
 • **(Apr 21, 2022): simplified comp and fixed out of sync city issue  commit: 116aab1e6ca1b9a2ad03f6a1071ede2f3e25c3d9**
