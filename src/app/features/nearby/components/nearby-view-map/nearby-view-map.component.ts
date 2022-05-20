@@ -20,7 +20,9 @@ export class NearbyViewMapComponent implements OnInit, OnDestroy {
   @Output() sendCity = new EventEmitter();
   @Output() mapName = new EventEmitter();
   @Output() iconColor = new EventEmitter();
+  @Output() sendHomeCord = new EventEmitter();
   @Output() pin2 = new EventEmitter();
+  @Output() distanceFN = new EventEmitter();
 
   $getCity!: Subscription;
   newCity!: string;
@@ -85,7 +87,6 @@ export class NearbyViewMapComponent implements OnInit, OnDestroy {
   }
 
   setDistance(pinInfo: Pins) {
-    console.log(pinInfo);
     this.mapViewServ.secondPin = pinInfo;
   }
 

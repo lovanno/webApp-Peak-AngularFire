@@ -16,7 +16,9 @@
     <div>
         <app-nearby-update-map [mapName]="mapViewServ.mapStyle" (ChangeMap)="changeClicked($event)"></app-nearby-update-map>
         <app-nearby-homepin (setCords)="changeHome($event)" [sendHomeCord]="mapViewServ.homeCord"></app-nearby-homepin>
-        <app-nearby-distance-pins [pin2]="mapViewServ.secondPin" [sendHomeCord]="mapViewServ.homeCord"></app-nearby-distance-pins>
+        <app-nearby-distance-pins [pin2]="mapViewServ.secondPin" [sendHomeCord]="mapViewServ.homeCord" 
+        [distanceFN]="mapViewServ.calculateDistance"></app-nearby-distance-pins>
+
     </div>
 
 </div>

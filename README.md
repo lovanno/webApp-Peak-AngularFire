@@ -123,3 +123,8 @@ to use a setter to make API calls from new input values. This was the drawback w
 
 &nbsp;
 
+*📚 Sources:*
+
+> Distance Calculation from 2 Geographic Coordinates (as seen in the map view service)
+
+  https://www.geeksforgeeks.org/program-distance-two-points-earth/

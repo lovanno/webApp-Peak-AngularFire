@@ -1,7 +1,8 @@
-<h4>Set Distance Pins</h4>
+<h2>Set Distance Pins</h2>
 
 
 <div *ngIf="sendHomeCord">
+    <h5 *ngIf="distanceNum">Distance Between Pins: {{distanceNum}} KM</h5>
     <p>Pin 1: Home</p>
     <p>{{sendHomeCord.lat}}, {{sendHomeCord.long}}</p>
 </div>
