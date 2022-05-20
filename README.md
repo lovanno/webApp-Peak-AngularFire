@@ -123,6 +123,15 @@ to use a setter to make API calls from new input values. This was the drawback w
 
 &nbsp;
 
+
+*Limitations 📜:*
+
+>Maplibre Geocoder API isn't compatible with Angular
+
+  https://github.com/maplibre/maplibre-gl-geocoder
+
+
+
 *📚 Sources:*
 
 > Distance Calculation from 2 Geographic Coordinates (as seen in the map view service)

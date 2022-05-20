@@ -27,19 +27,9 @@ export class MapViewService {
   }
 
 
-
-  /*getDegree(num: number) {
-    return num * Math.PI / 180
-  }
-
-  long1 = this.getDegree(long1);
-  long2 = this.getDegree(long2);
-  lat1 = this.getDegree(lat1);
-  lat2 = this.getDegree(lat2);*/
-
   /*Conversion of Geek for Geeks' Javascript Formula*/
   calculateDistance(lat1: number, long1: number, lat2: number, long2: number) {
-    long1 = long1 * Math.PI / 180;
+    long1 = long1 * Math.PI / 180;  /*couldn't use a helper function to clean this up since Func is sent down to child*/
     long2 = long2 * Math.PI / 180;
     lat1 = lat1 * Math.PI / 180;
     lat2 = lat2 * Math.PI / 180;
@@ -52,10 +42,8 @@ export class MapViewService {
       * Math.pow(Math.sin(distlon / 2), 2);
 
     let c = 2 * Math.asin(Math.sqrt(a));
-    /*Radius of earth in kilometers. Use 3956 for miles*/
-    let r = 6371;
+    let r = 6371; /*Radius of earth in kilometers. Use 3956 for miles*/
 
-    // calculate the result
     return (c * r);
   }
 
