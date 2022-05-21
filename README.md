@@ -137,3 +137,45 @@ to use a setter to make API calls from new input values. This was the drawback w
 > Distance Calculation from 2 Geographic Coordinates (as seen in the map view service)
 
   https://www.geeksforgeeks.org/program-distance-two-points-earth/
+
+
+
+> API Ideas 
+
+  *Here Reverse Geocoding:*
+  https://platform.here.com/portal/
+
+  Possible Alt Uses: Real time weather forecasts, search autocomplete
+
+  *Mass Profile Account Bots*
+  https://fakerjs.dev/
+
+  *QR Menu/Website Scanner for Sites*
+  https://www.qrtag.net/api/
+
+  *Find stuff to do*
+  https://www.boredapi.com/
+
+  *Free Geocoding APIS*
+  https://ipbase.com/
+  https://geocode.xyz/api
+  https://geokeo.com/
+  https://www.geojs.io/
+  https://onwater.io/ - On Water. Could prevent Home from being set in Water
+
+
+
+  *Find APIS//Possible Ideas* (? = maybeNot)
+  • Check how busy a place is
+  • Transit routing
+  • Restaurant reviews
+  • ?Art gallery experience section? - https://api.artic.edu/docs/#best-practices 
+  • Schedule/Calendars - https://quickchart.io/
+  • Random Food Ideas for Dinner - https://foodish-api.herokuapp.com/
+  • Find breweries/drinks - https://www.openbrewerydb.org/documentation#random-brewery
+  • ?Social situations tester? - https://excuser.herokuapp.com/ + Advices Quotes (Maybe a daily thing when logged in) https://api.adviceslip.com/, http://forismatic.com/en/api/, https://api.goprogram.ai/inspiration/docs/
+
+  • User Reviews of new Products (maybe connect multiple videos to an article to show opinions on food) - https://github.com/andyklimczak/TheReportOfTheWeek-API
+  • Universities near you - https://github.com/Hipo/university-domains-list
+  • Quality of Life conditions - https://developers.teleport.org/
+  • Live aircrafts - https://www.adsbexchange.com/data/
