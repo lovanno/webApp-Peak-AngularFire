@@ -9,10 +9,9 @@ export class MapViewService {
   mapToggle = true;
   mapUrl!: string;
   mapStyle = "Night";
-  homeCord!: Cord<number>;
-  secondPin!: Pins;
-
-  constructor() { }
+  homeCord!: Cord<number> | null;
+  secondPin!: Pins | null;
+  distanceofPin!: number | null;
 
   updateMap() {
     this.mapToggle = !this.mapToggle;
@@ -27,12 +26,17 @@ export class MapViewService {
   }
 
 
+  /*                                                             nearbyDistancePins Comp                                       */
+  getDegree(num: number) {
+    return num * Math.PI / 180
+  }
+
   /*Conversion of Geek for Geeks' Javascript Formula*/
   calculateDistance(lat1: number, long1: number, lat2: number, long2: number) {
-    long1 = long1 * Math.PI / 180;  /*couldn't use a helper function to clean this up since Func is sent down to child*/
-    long2 = long2 * Math.PI / 180;
-    lat1 = lat1 * Math.PI / 180;
-    lat2 = lat2 * Math.PI / 180;
+    long1 = this.getDegree(long1);
+    long2 = this.getDegree(long2);
+    lat1 = this.getDegree(lat1);
+    lat2 = this.getDegree(lat2);
 
     /* Haversine formula */
     let distlon = long2 - long1;
@@ -47,8 +51,10 @@ export class MapViewService {
     return (c * r);
   }
 
-
-
+  preciseRound(num: number, decimals: number) {
+    let t = Math.pow(10, decimals);
+    return parseFloat((Math.round((num * t) + (decimals > 0 ? 1 : 0) * (Math.sign(num) * (10 / Math.pow(100, decimals)))) / t).toFixed(decimals));
+  }
 
 }
 

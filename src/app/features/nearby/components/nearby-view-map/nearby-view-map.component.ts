@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { CitiesService } from '../../services/cities.service';
 import { CurrentCityService } from '../../services/current-city.service';
@@ -31,7 +31,6 @@ export class NearbyViewMapComponent implements OnInit, OnDestroy {
   sendMap: any;
 
   constructor(public citiesServ: CitiesService, public currentCity: CurrentCityService, public mapViewServ: MapViewService, public rout: Router) { }
-
   ngOnInit(): void {
     this.currentRoute = this.prettyUrl(this.rout.url.slice(8));   /*currentRoute is used when someone navigates to the page without manually setting a city*/
     this.currentRoute = this.currentRoute.toLocaleLowerCase();    /*It will grab the url "nearby/{city}", slice it to get the city and lower case it*/
@@ -78,17 +77,49 @@ export class NearbyViewMapComponent implements OnInit, OnDestroy {
   }
 
 
+  /*                                                             nearbyUpdateMap Comp                                       */
   changeClicked(event: any) {
     this.mapViewServ.updateMap();
   }
 
+
+  /*                                                             nearbyHomepin Comp                                       */
   changeHome(cords: Cord<object>) {
     this.mapViewServ.homeCord = cords;
   }
 
+
+  /*                                                             nearbyDistancePins Comp                                       */
   setDistance(pinInfo: Pins) {
     this.mapViewServ.secondPin = pinInfo;
   }
+
+  resetSelectPin(pin: any) {
+    if (pin == this.mapViewServ.homeCord) {
+      this.mapViewServ.homeCord = null;
+    }
+    if (pin == this.mapViewServ.secondPin) {
+      this.mapViewServ.secondPin = null;
+    }
+  }
+
+  /*Set timeout prevents ExpressionChangedAfterItHasBeenCheckedError: Previous value: 'undefined'. Current value: '21403.419'.. 
+    This is because distanceofPin is always sent down through @Output distanceFN. It is intialized as undefined and once this function receieves unit, 
+    distanceofPin is sent as undefined and updated at the same time. Instead, we through 2 checks w/ setTimeOut() and fix the issue */
+  updateDistanceUnit(unit: string) {
+    setTimeout(() => {
+      if (unit == "M" && this.mapViewServ.secondPin && this.mapViewServ.homeCord) {
+        this.mapViewServ.distanceofPin = this.mapViewServ.calculateDistance(this.mapViewServ.homeCord.lat!, this.mapViewServ.homeCord.long!, this.mapViewServ.secondPin.cord[0], this.mapViewServ.secondPin.cord[1]);
+        this.mapViewServ.distanceofPin = this.mapViewServ.preciseRound((this.mapViewServ.distanceofPin / 1.609344), 3);
+      }
+
+      if (unit == "KM" && this.mapViewServ.secondPin && this.mapViewServ.homeCord) {
+        this.mapViewServ.distanceofPin = this.mapViewServ.calculateDistance(this.mapViewServ.homeCord.lat!, this.mapViewServ.homeCord.long!, this.mapViewServ.secondPin.cord[0], this.mapViewServ.secondPin.cord[1]);
+        this.mapViewServ.distanceofPin = this.mapViewServ.preciseRound((this.mapViewServ.distanceofPin), 3);  /*since calcDistance() is always recalculated and gives its answer in KM, I don't have to adjust anything*/
+      }
+    }, 1)
+  }
+
 
 
 

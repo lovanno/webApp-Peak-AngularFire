@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChange } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChange } from '@angular/core';
 import { Pins } from '../../interfaces/pins';
 import { Cord } from '../../interfaces/cord';
 
@@ -8,38 +8,49 @@ import { Cord } from '../../interfaces/cord';
   styleUrls: ['./nearby-distance-pins.component.scss']
 })
 export class NearbyDistancePinsComponent implements OnChanges {
-  @Input() pin2!: Pins;
-  @Input() sendHomeCord!: Cord<number>;
-  @Input() distanceFN!: Function;
-  public distanceNum!: number;
+  /*null type allows me to reset the pin. Although Undefined works, null signifies empty/nothing while undefined is a variable declared that was given no value at run time. */
+  @Input() pin2!: Pins | null;
+  @Input() sendHomeCord!: Cord<number> | null;
+  @Input() distanceNum!: number | null;
+
+  @Output() resetPins = new EventEmitter();
+  @Output() toggleUnit = new EventEmitter();
   public distUnit = "KM";
+  public distUnit2 = "M"; /*a second variable is required to allow users to switch to a different unit*/
   public unitToggle = false;
 
   constructor() { }
-
   ngOnChanges() {
     if (this.pin2 && this.sendHomeCord) {
-      this.distanceNum = this.distanceFN(this.sendHomeCord.lat, this.sendHomeCord.long, this.pin2.cord[0], this.pin2.cord[1]);
-      this.distanceNum = this.preciseRound(this.distanceNum, 3);
+      this.toggleUnit.emit(this.distUnit);    /*once 2 pins are set, we request the distance between the pins to nearbyViewMap through updateDistanceUnit. It's then sent down via @Input() distanceNum*/
     }
   }
 
-  preciseRound(num: number, decimals: number) {
-    let t = Math.pow(10, decimals);
-    return parseFloat((Math.round((num * t) + (decimals > 0 ? 1 : 0) * (Math.sign(num) * (10 / Math.pow(100, decimals)))) / t).toFixed(decimals));
-  }
 
   toggleMeters() {
     this.unitToggle = !this.unitToggle;
-    if (this.unitToggle) {
+    if (this.unitToggle && this.distanceNum) {
       this.distUnit = "M";
-      this.distanceNum = this.preciseRound((this.distanceNum / 1.609344), 3);
+      this.distUnit2 = "KM";
+      this.toggleUnit.emit(this.distUnit);
     }
-    else {
+    else if (this.distanceNum) {
       this.distUnit = "KM";
-      this.distanceNum = this.preciseRound((this.distanceNum * 1.609344), 3);
+      this.distUnit2 = "M";
+      this.toggleUnit.emit(this.distUnit);
     }
+  }
 
+
+  /*While it seems redundant, this seperates logic from child and allows nearby-view-map to handle it*/
+  resetPin(pinNum: Pins | Cord<number>) {
+    if (pinNum == this.sendHomeCord) {
+      this.resetPins.emit(this.sendHomeCord);
+    }
+    if (this.pin2 == pinNum) {
+      this.resetPins.emit(this.pin2);
+    }
+    this.distanceNum = null;
   }
 
 }
