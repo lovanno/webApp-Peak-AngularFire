@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit, OnDestroy, Input } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { CitiesService } from '../../services/cities.service';
 import { CurrentCityService } from '../../services/current-city.service';
@@ -14,6 +14,7 @@ import { Pins } from '../../interfaces/pins';
   styleUrls: ['./nearby-view-map.component.scss']
 })
 export class NearbyViewMapComponent implements OnInit, OnDestroy {
+  @Output() mapCord = new EventEmitter();
   @Output() cityImg = new EventEmitter();
   @Output() cityCord = new EventEmitter();
   @Output() mapPlaces = new EventEmitter();
@@ -23,6 +24,8 @@ export class NearbyViewMapComponent implements OnInit, OnDestroy {
   @Output() sendHomeCord = new EventEmitter();
   @Output() pin2 = new EventEmitter();
   @Output() distanceFN = new EventEmitter();
+  @Output() sendSecondPinCord = new EventEmitter();
+  @Input() moveableHomePin!: boolean;
 
   $getCity!: Subscription;
   newCity!: string;
@@ -76,6 +79,20 @@ export class NearbyViewMapComponent implements OnInit, OnDestroy {
     return childRoute
   }
 
+  pinMoved(newCord: any) {
+    if (newCord.homePin && this.mapViewServ.homeCord) {
+      this.mapViewServ.homeCord.long = this.mapViewServ.preciseRound(newCord.homePin[0], 2); /*To avoid having 12+ decimal points*/
+      this.mapViewServ.homeCord.lat = this.mapViewServ.preciseRound(newCord.homePin[1], 2);
+      this.updateDistanceUnit(this.mapViewServ.distanceUnit);
+    }
+    if (newCord.secondPin && this.mapViewServ.secondPin) {
+      this.mapViewServ.secondPin.place = "";
+      this.mapViewServ.secondPin.cord = [this.mapViewServ.preciseRound(newCord.secondPin[0], 2), this.mapViewServ.preciseRound(newCord.secondPin[1], 2)]; /*mixed order since lngLat exepects [long, lat]*/
+      this.updateDistanceUnit(this.mapViewServ.distanceUnit);
+    }
+
+  }
+
 
   /*                                                             nearbyUpdateMap Comp                                       */
   changeClicked(event: any) {
@@ -86,6 +103,10 @@ export class NearbyViewMapComponent implements OnInit, OnDestroy {
   /*                                                             nearbyHomepin Comp                                       */
   changeHome(cords: Cord<object>) {
     this.mapViewServ.homeCord = cords;
+  }
+
+  updateHomeDrag(status: boolean) {
+    this.mapViewServ.homePinDrag = status;
   }
 
 
@@ -109,13 +130,15 @@ export class NearbyViewMapComponent implements OnInit, OnDestroy {
   updateDistanceUnit(unit: string) {
     setTimeout(() => {
       if (unit == "M" && this.mapViewServ.secondPin && this.mapViewServ.homeCord) {
-        this.mapViewServ.distanceofPin = this.mapViewServ.calculateDistance(this.mapViewServ.homeCord.lat!, this.mapViewServ.homeCord.long!, this.mapViewServ.secondPin.cord[0], this.mapViewServ.secondPin.cord[1]);
+        this.mapViewServ.distanceofPin = this.mapViewServ.calculateDistance(this.mapViewServ.homeCord.long!, this.mapViewServ.homeCord.lat!, this.mapViewServ.secondPin.cord[0], this.mapViewServ.secondPin.cord[1]);
         this.mapViewServ.distanceofPin = this.mapViewServ.preciseRound((this.mapViewServ.distanceofPin / 1.609344), 3);
+        this.mapViewServ.distanceUnit = unit;
       }
 
       if (unit == "KM" && this.mapViewServ.secondPin && this.mapViewServ.homeCord) {
-        this.mapViewServ.distanceofPin = this.mapViewServ.calculateDistance(this.mapViewServ.homeCord.lat!, this.mapViewServ.homeCord.long!, this.mapViewServ.secondPin.cord[0], this.mapViewServ.secondPin.cord[1]);
+        this.mapViewServ.distanceofPin = this.mapViewServ.calculateDistance(this.mapViewServ.homeCord.long!, this.mapViewServ.homeCord.lat!, this.mapViewServ.secondPin.cord[0], this.mapViewServ.secondPin.cord[1]);
         this.mapViewServ.distanceofPin = this.mapViewServ.preciseRound((this.mapViewServ.distanceofPin), 3);  /*since calcDistance() is always recalculated and gives its answer in KM, I don't have to adjust anything*/
+        this.mapViewServ.distanceUnit = unit;
       }
     }, 1)
   }

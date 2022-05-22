@@ -10,7 +10,10 @@ export class MapViewService {
   mapUrl!: string;
   mapStyle = "Night";
   homeCord!: Cord<number> | null;
+  homePinDrag = false;
   secondPin!: Pins | null;
+  secondPinDrag = false;
+  distanceUnit!: string;  /*used when a pin is dragged and distanceofPin needs to be updated*/
   distanceofPin!: number | null;
 
   updateMap() {
@@ -32,10 +35,10 @@ export class MapViewService {
   }
 
   /*Conversion of Geek for Geeks' Javascript Formula*/
-  calculateDistance(lat1: number, long1: number, lat2: number, long2: number) {
+  calculateDistance(long1: number, lat1: number, long2: number, lat2: number) {
     long1 = this.getDegree(long1);
-    long2 = this.getDegree(long2);
     lat1 = this.getDegree(lat1);
+    long2 = this.getDegree(long2);
     lat2 = this.getDegree(lat2);
 
     /* Haversine formula */
@@ -47,7 +50,6 @@ export class MapViewService {
 
     let c = 2 * Math.asin(Math.sqrt(a));
     let r = 6371; /*Radius of earth in kilometers. Use 3956 for miles*/
-
     return (c * r);
   }
 

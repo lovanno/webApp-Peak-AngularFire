@@ -4,30 +4,6 @@
         [zoom]="[9]"
         [center]="mapCord"
       >
-        <mgl-geojson-source id="point">
-            <mgl-feature
-              [properties]=""
-              [geometry]="{type: 'Point',coordinates: [0, 0]}"
-              [mglDraggable]="targetLayer"
-              (featureDrag)="onDrag($event)"
-            ></mgl-feature>
-          </mgl-geojson-source>
-          <mgl-layer
-            #targetLayer
-            id="point"
-            type="circle"
-            source="point"
-            [paint]="layerPaint"
-            (layerMouseEnter)="changeColor('#3bb2d0')"
-            (layerMouseLeave)="changeColor('#3887be')"
-          ></mgl-layer>
-          <mgl-control position="bottom-left">
-            <div>
-                <div>Longitude:&nbsp;{{ coordinates[0] }}</div>
-                <div>Latitude:&nbsp;{{ coordinates[1] }}</div>
-            </div>
-          </mgl-control>
- 
         <div *ngFor="let place of mapPlaces; index as i;">
             
           <mgl-marker [lngLat]="[place.cord.longitude, place.cord.latitude]">
@@ -71,10 +47,19 @@
           </mgl-marker>
         </div>
 
-        <mgl-marker *ngIf="sendHomeCord" [lngLat]="[sendHomeCord.long, sendHomeCord.lat]">
-          <img class class="markerIcon" src="../../../../../assets/icon_home.svg">
+        <mgl-marker *ngIf="sendHomeCord" [lngLat]="[sendHomeCord.long!, sendHomeCord.lat!]" [draggable]="makeHomePinDrag"
+        (markerDragEnd)="onDragEnd($event)">
+          <div id="homePin"></div>
+          <img class="markerIcon" src="../../../../../assets/icon_home.svg">
           <p>Home</p>
         </mgl-marker>
-      
+
+        <!--If a div is placed inside, the default SVG marker won't be loaded in. This is why I'm forced to place an icon-->
+        <mgl-marker *ngIf="sendSecondPinCord"[lngLat]="[sendSecondPinCord.cord[0], sendSecondPinCord.cord[1]]" [draggable]="true"
+        (markerDragEnd)="onDragEnd($event)">
+          <div id="secondPin"></div>
+          <img class="markerIcon" src="../../../../../assets/icon_pin.svg">
+        </mgl-marker>
+
       </mgl-map>
   </div>

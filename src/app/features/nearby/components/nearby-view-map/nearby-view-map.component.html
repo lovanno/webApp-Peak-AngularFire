@@ -15,7 +15,7 @@
 
     <div>
         <app-nearby-update-map [mapName]="mapViewServ.mapStyle" (ChangeMap)="changeClicked($event)"></app-nearby-update-map>
-        <app-nearby-homepin (setCords)="changeHome($event)" [sendHomeCord]="mapViewServ.homeCord"></app-nearby-homepin>
+        <app-nearby-homepin (setCords)="changeHome($event)" (moveableHomePin)="updateHomeDrag($event)" [sendHomeCord]="mapViewServ.homeCord"></app-nearby-homepin>
         <app-nearby-distance-pins [pin2]="mapViewServ.secondPin" [sendHomeCord]="mapViewServ.homeCord" 
         [distanceNum]="mapViewServ.distanceofPin" (resetPins)="resetSelectPin($event)" (toggleUnit)="updateDistanceUnit($event)"></app-nearby-distance-pins>
     </div>
@@ -25,6 +25,9 @@
 
 <!-- I tried seperating event pins from the map by nesting a child component inside <app-nearby-map> 
     This didn't work since ng-content is only used for static content projection -->
-<app-nearby-map [mapStyle]="mapViewServ.mapUrl" [iconColor]="mapViewServ.mapStyle"[mapCord]="citiesServ.cityCord" 
+<app-nearby-map [mapStyle]="mapViewServ.mapUrl" [iconColor]="mapViewServ.mapStyle" [mapCord]="citiesServ.cityCord" 
 [mapPlaces]="(citiesServ.places$ | async)" [sendCity]="newCity"
-[sendHomeCord]="mapViewServ.homeCord" (updateDistance)="setDistance($event)"></app-nearby-map>   
+[sendHomeCord]="mapViewServ.homeCord!" [sendSecondPinCord]="mapViewServ.secondPin!"
+(updateDistance)="setDistance($event)" [makeHomePinDrag]="mapViewServ.homePinDrag"
+(updateHomePin)="pinMoved($event)"
+(updateDistance)="pinMoved($event)"></app-nearby-map>   

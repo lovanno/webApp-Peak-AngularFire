@@ -13,7 +13,7 @@ export class CitiesService {
   public currentOpp: Subscription | undefined;
 
   public cityImg: string | undefined;        /*We'll use a variable instead of a subject. We'll change if it's needed in the explore page*/
-  public cityCord: maplibregl.LngLatLike | undefined;
+  public cityCord!: maplibregl.LngLatLike | null;
   public places$: Observable<DocumentData> | undefined;
 
 

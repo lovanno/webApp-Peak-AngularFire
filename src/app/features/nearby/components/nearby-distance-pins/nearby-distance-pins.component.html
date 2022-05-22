@@ -4,7 +4,7 @@
 <button *ngIf="distanceNum"(click)="toggleMeters()">Change Distance to {{distUnit2}}</button>
 
 <div *ngIf="sendHomeCord">
-    <p>Pin 1: Home ({{sendHomeCord.lat}}, {{sendHomeCord.long}})</p>
+    <p>Pin 1: Home ({{sendHomeCord.long}}, {{sendHomeCord.lat}})</p>
     <button (click)="resetPin(sendHomeCord)">Remove Pin</button>
 </div>
 

@@ -1,5 +1,7 @@
 import { ChangeDetectorRef, Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { LngLat, MapMouseEvent } from 'maplibre-gl';
+import { LngLat, MapMouseEvent, Marker } from 'maplibre-gl';
+import { Cord } from '../../interfaces/cord';
+import { Pins } from '../../interfaces/pins';
 
 @Component({
   selector: 'app-nearby-map',
@@ -12,15 +14,17 @@ export class NearbyMapComponent implements OnInit {
   @Input() sendCity: any;
   @Input() mapStyle!: string;
   @Input() iconColor!: string;
-  @Input() sendHomeCord: any;
+  @Input() sendHomeCord!: Cord<number>;
+  @Input() sendSecondPinCord!: Pins;
+  @Input() makeHomePinDrag!: boolean;
   @Output() updateDistance = new EventEmitter<any>();
+  @Output() updateHomePin = new EventEmitter<any>();
+  @Output() updateSecondPin = new EventEmitter<any>();
 
   public count!: number;
   public track = true;
-  public sentPin!: object;
 
   constructor(private ref: ChangeDetectorRef) { }
-
   ngOnInit() {
     this.mapStyle = 'https://api.maptiler.com/maps/9534ef7d-c9d8-41b6-8955-46ef0283e901/style.json?key=FVjeFXupqnVfeknzKQkO'; /*sets inital state to night mode. Then the value is updated dynamically through the mapStyle input*/
   }
@@ -56,6 +60,7 @@ export class NearbyMapComponent implements OnInit {
   };
   coordinates = [0, 0];
 
+
   changeColor(color: string) {
     this.layerPaint = { ...this.layerPaint, 'circle-color': color };
   }
@@ -63,6 +68,23 @@ export class NearbyMapComponent implements OnInit {
 
   onDrag(event: MapMouseEvent) {
     this.coordinates = event.lngLat.toArray();
+  }
+
+  onDragEnd(marker: Marker) {
+    this.coordinates = marker.getLngLat().toArray();
+
+    this.checkPinCord(marker);
+  }
+
+  checkPinCord(marker: any) {
+    if (marker._element.firstElementChild!.id == "homePin") {
+      const homePin = { homePin: [marker._lngLat.lng, marker._lngLat.lat] };  /*naming it allows specific pin update*/
+      this.updateHomePin.emit(homePin);
+    }
+    else if (marker._element.firstElementChild!.id == "secondPin") {
+      const secondPin = { secondPin: [marker._lngLat.lng, marker._lngLat.lat] };
+      this.updateHomePin.emit(secondPin);
+    }
   }
 
   sendPin(place: string, cord: LngLat[]) {

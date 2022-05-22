@@ -8,12 +8,28 @@ import { Cord } from '../../interfaces/cord';
   styleUrls: ['./nearby-homepin.component.sass']
 })
 export class NearbyHomepinComponent {
-  @Output() setCords = new EventEmitter();
   @Input() sendHomeCord!: any;
+  @Output() setCords = new EventEmitter();
+  @Output() moveableHomePin = new EventEmitter();
+  public homePinDrag = false;
+  public homePinDragStatus = "Drag";
+
   constructor() { }
 
   sendCord(cordPair: Cord<object>) {
     this.setCords.emit(cordPair);
+  }
+
+  homeDraggable() {
+    this.homePinDrag = !this.homePinDrag;
+    this.moveableHomePin.emit(this.homePinDrag);
+
+    if (this.homePinDrag) {
+      this.homePinDragStatus = "Stop Moving Marker";
+    }
+    else {
+      this.homePinDragStatus = "Drag Marker";
+    }
   }
 
 }
